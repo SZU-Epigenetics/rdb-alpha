@@ -6,11 +6,17 @@
 
 ### How to Run a Project in Docker
 
-1. Clone the RDB Alpha repo with `git clone https://github.com/freeCodeCamp/rdb-alpha`
-1. Open a terminal, navigate to the `rdb-alpha` directory, and open VSCode with `code .`
+1. Clone the RDB Alpha repo with `git clone https://github.com/SZU-Epigenetics/rdb-alpha.git`
+1. Open VSCode, and navigate to the `rdb-alpha` directory.
+1. Customize proxy configuration in Dockerfile.
+    ```shell
+    RUN git config --global http.proxy 'socks5://127.0.0.1:20170'
+    RUN git config --global https.proxy 'socks5://127.0.0.1:20170'
+    ```
+1. Open the terminal and run ``docker build -t freecodecamp:rdb .``
 1. Press Ctrl / Cmd + Shift + P and enter `Dev Containers: Rebuild Container and Reopen in Container`
-1. A new VS Code window will open and begin building the Docker image. It will take several minutes to build the first time.
-1. Once the image is finished building, press Ctrl / Cmd + Shift + P and enter `CodeRoad: Start` to open CodeRoad
+1. A new VS Code window will open and begin rebuilding the Docker image.
+1. Once the image is finished rebuilding, press Ctrl / Cmd + Shift + P and enter `CodeRoad: Start` to open CodeRoad
 1. In the CodeRoad window, click "Start New Tutorial"
 1. Enter the URL to the `tutorial.json` file of the project you want to start (ex: https://raw.githubusercontent.com/freeCodeCamp/learn-bash-by-building-a-boilerplate/main/tutorial.json)
 1. Click the "Start" button
@@ -42,3 +48,8 @@ Note: If you restart or switch projects you will lose your progress, along with 
 - [Periodic Table Database](https://raw.githubusercontent.com/freeCodeCamp/learn-periodic-table-database/main/tutorial.json)
 - Learn GitHub by Building a List of Inspirational Quotes (in progress)
 - [Number Guessing Game](https://raw.githubusercontent.com/freeCodeCamp/learn-number-guessing-game/main/tutorial.json)
+
+
+### What has changed compared to the original version
+1. Building the Docker image manually.
+1. Set up a proxy for Git.
