@@ -1,8 +1,11 @@
 {
   "name": "RDB Alpha",
-  "dockerFile": "../Dockerfile",
+  "image": "freecodecamp:rdb",
   "workspaceFolder": "/home/codeally/project",
   "extensions": [
     "coderoad.coderoad@0.15.1"
+  ],
+  "runArgs": [
+    "--network=host", "--name=RDB_Alpha"
   ]
 }
