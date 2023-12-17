@@ -27,7 +27,7 @@ There may be some additional troubleshooting steps to get the container running 
 
 Note: If you restart or switch projects you will lose your progress, along with any files or directories you created.
 
-1. Press Ctrl / Cmd + Shift + P and enter `Dev Containers: Reopen in Container`
+1. Press Ctrl / Cmd + Shift + P and enter `Dev Containers: Rebuild Container`
 1. Wait for VS Code to reopen and reload the Docker container
 1. Open CodeRoad, enter the URL to a `tutorial.json` file, and start the project as described above
 
