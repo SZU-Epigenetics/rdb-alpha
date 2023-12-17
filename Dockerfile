@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ARG USERNAME=codeally
 ARG HOMEDIR=/home/$USERNAME
@@ -6,13 +6,15 @@ ARG HOMEDIR=/home/$USERNAME
 ENV TZ="America/New_York" \
   LOCALE=en_US.UTF-8
 
-RUN apt update && apt install -y sudo
-
 # Unminimize Ubuntu to restore man pages
+RUN apt update && apt install -y sudo
 RUN yes | unminimize
 
 # Set up timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Install packages for projects
+RUN sudo apt install -y curl git postgresql postgresql-contrib nano bash-completion man-db
 
 # Set up user, disable pw, and add to sudo group
 RUN adduser --disabled-password \
@@ -25,9 +27,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 
 USER ${USERNAME}
 
-# Install packages for projects
-RUN sudo apt install -y curl git postgresql postgresql-contrib nano bash-completion man-db
-
 # Set up locales
 RUN sudo locale-gen ${LOCALE} && sudo update-locale LANG=${LOCALE}
 
@@ -38,3 +37,9 @@ RUN sudo apt install -y nodejs
 # Configure project directory
 RUN mkdir ${HOMEDIR}/project
 WORKDIR ${HOMEDIR}/project
+
+#set git
+RUN git config --global http.proxy 'socks5://127.0.0.1:20170'
+RUN git config --global https.proxy 'socks5://127.0.0.1:20170'
+RUN git config --global user.name "${USERNAME}"
+RUN git config --global user.email "${USERNAME}@mail.com"
